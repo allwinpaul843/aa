@@ -9,3 +9,5 @@ keybert
 nltk
 PyQt5
 cachetools
+pydrive2
+streamlit
