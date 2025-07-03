@@ -16,9 +16,16 @@ SEMANTIC_PROMPT_CACHE_PATH = 'semantic_prompt_cache.sqlite'
 SERVICE_ACCOUNT_JSON = 'service_account.json'
 
 # Handle Streamlit Cloud secrets (if present)
+# ...existing code...
+
+# Handle Streamlit Cloud secrets (if present)
 if 'GOOGLE_SERVICE_ACCOUNT_JSON' in st.secrets:
     with open(SERVICE_ACCOUNT_JSON, 'w') as f:
-        json.dump(st.secrets['GOOGLE_SERVICE_ACCOUNT_JSON'], f)
+        f.write(st.secrets['GOOGLE_SERVICE_ACCOUNT_JSON'])
+
+drive = authenticate_drive(SERVICE_ACCOUNT_JSON)
+
+# ...rest of your
 
 drive = authenticate_drive(SERVICE_ACCOUNT_JSON)
 

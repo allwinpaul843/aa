@@ -1,9 +1,20 @@
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 from oauth2client.service_account import ServiceAccountCredentials
-
+import json
 
 def authenticate_drive(service_account_json_path):
+    # Debug: Check the contents of the service account file before loading
+    with open(service_account_json_path, 'r') as f:
+        try:
+            credentials = json.load(f)
+            print("Service account JSON loaded successfully.")
+        except json.JSONDecodeError as e:
+            print(f"Error loading JSON: {e}")
+            f.seek(0)
+            print(f"Invalid JSON content:\n{f.read()}")
+            raise e
+
     gauth = GoogleAuth()
     gauth.auth_method = 'service'
     gauth.credentials = ServiceAccountCredentials.from_json_keyfile_name(
